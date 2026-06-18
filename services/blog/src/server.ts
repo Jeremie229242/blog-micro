@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import blogRoutes from "./routes/blog.js";
+import blogRoutes from "./routes/blogs.js";
 import { createClient } from "redis";
 import { startCacheConsumer } from "./utils/consumer.js";
 import cors from "cors";
