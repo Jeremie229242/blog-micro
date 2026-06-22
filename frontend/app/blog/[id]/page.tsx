@@ -190,7 +190,131 @@ const BlogPage = () => {
     return <Loading />;
   }
 
- 
+  return (
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
+      <Card>
+        <CardHeader>
+          <h1 className="text-3xl font-bold text-gray-900">{blog.title}</h1>
+          <p className="text-gray-600 mt-2 flex items-center">
+            <Link
+              className="flex items-center gap-2"
+              href={`/profile/${author?._id}`}
+            >
+              <img
+                src={author?.image}
+                className="w-8 h-8 rounded-full"
+                alt=""
+              />
+              {author?.name}
+            </Link>
+            {isAuth && (
+              <Button
+                variant={"ghost"}
+                className="mx-3"
+                size={"lg"}
+                disabled={loading}
+                onClick={saveBlog}
+              >
+                {saved ? <BookmarkCheck /> : <Bookmark />}
+              </Button>
+            )}
+            {blog.author === user?._id && (
+              <>
+                <Button
+                  size={"sm"}
+                  onClick={() => router.push(`/blog/edit/${id}`)}
+                >
+                  <Edit />
+                </Button>
+                <Button
+                  variant={"destructive"}
+                  className="mx-2"
+                  size={"sm"}
+                  onClick={deletBlog}
+                  disabled={loading}
+                >
+                  <Trash2Icon />
+                </Button>
+              </>
+            )}
+          </p>
+        </CardHeader>
+        <CardContent>
+          <img
+            src={blog.image}
+            alt=""
+            className="w-full h-64 object-cover rounded-lg mb-4"
+          />
+          <p className="text-lg text-gray-700 mb-4">{blog.description}</p>
+          <div
+            className="prose max-w-none"
+            dangerouslySetInnerHTML={{ __html: blog.blogcontent }}
+          />
+        </CardContent>
+      </Card>
+
+      {isAuth && (
+        <Card>
+          <CardHeader>
+            <h3 className="text-xl font-semibold">Leave a comment</h3>
+          </CardHeader>
+          <CardContent>
+            <Label htmlFor="comment">Your Comment</Label>
+            <Input
+              id="comment"
+              placeholder="Type your comment here"
+              className="my-2"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <Button onClick={addComment} disabled={loading}>
+              {loading ? "Adding comment..." : "Post Comment"}
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      <Card>
+        <CardHeader>
+          <h3 className="text-lg font-medium">All Comments</h3>
+        </CardHeader>
+        <CardContent>
+          {comments && comments.length > 0 ? (
+            comments.map((e, i) => {
+              return (
+                <div key={i} className="border-b py-2 flex items-center gap-3">
+                  <div>
+                    <p className="font-semibold flex items-center gap-1">
+                      <span className="user border border-gray-400 rounded-full p-1">
+                        <User2 />
+                      </span>
+                      {e.username}
+                    </p>
+                    <p>{e.comment}</p>
+                    <p className="text-xs text-gray-500">
+                      {new Date(e.create_at).toLocaleString()}
+                    </p>
+                  </div>
+                  {e.userid === user?._id && (
+                    <Button
+                      onClick={() => deleteComment(e.id)}
+                      variant={"destructive"}
+                      disabled={loading}
+                    >
+                      <Trash2 />
+                    </Button>
+                  )}
+                </div>
+              );
+            })
+          ) : (
+            <p>No Comments Yet</p>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+
 };
 
 export default BlogPage;
