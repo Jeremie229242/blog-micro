@@ -24,6 +24,7 @@ import toast from "react-hot-toast";
 
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
+
 const AddBlog = () => {
   const editor = useRef(null);
   const [content, setContent] = useState("");
