@@ -22,11 +22,11 @@ export const redisClient = createClient({
 
 redisClient
   .connect()
-  .then(() => console.log("Connected to redis"))
+  .then(() => console.log("Redis Connecté"))
   .catch(console.error);
 
 app.use("/api/v1", blogRoutes);
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Le serveur est en cours d'exécution sur le Port http://localhost:${port}`);
 });

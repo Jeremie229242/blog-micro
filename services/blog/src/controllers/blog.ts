@@ -12,7 +12,7 @@ export const getAllBlogs = TryCatch(async (req, res) => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Serving from Redis cache");
+    console.log("Afficher à partir du cache Redis");
     res.json(JSON.parse(cached));
     return;
   }
@@ -35,7 +35,7 @@ export const getAllBlogs = TryCatch(async (req, res) => {
     blogs = await sql`SELECT * FROM blogs ORDER BY create_at DESC`;
   }
 
-  console.log("Serving from db");
+  console.log("Afficher depuis la db");
 
   await redisClient.set(cacheKey, JSON.stringify(blogs), { EX: 3600 });
 
@@ -50,7 +50,7 @@ export const getSingleBlog = TryCatch(async (req, res) => {
   const cached = await redisClient.get(cacheKey);
 
   if (cached) {
-    console.log("Serving single blog from Redis cache");
+    console.log("Afficher un seul blog depuis le cache Redis");
     res.json(JSON.parse(cached));
     return;
   }
@@ -59,7 +59,7 @@ export const getSingleBlog = TryCatch(async (req, res) => {
 
   if (blog.length === 0) {
     res.status(404).json({
-      message: "no blog with this id",
+      message: "Pas de blog avec cet id",
     });
     return;
   }
@@ -82,7 +82,7 @@ export const addComment = TryCatch(async (req: AuthenticatedRequest, res) => {
   await sql`INSERT INTO comments (comment, blogid, userid, username) VALUES (${comment}, ${blogid}, ${req.user?._id}, ${req.user?.name}) RETURNING *`;
 
   res.json({
-    message: "Comment Added",
+    message: "Commentaire Ajouter",
   });
 });
 
@@ -105,7 +105,7 @@ export const deleteComment = TryCatch(
 
     if (comment[0].userid !== req.user?._id) {
       res.status(401).json({
-        message: "You are not owner of this comment",
+        message: "Vous n'êtes pas l'auteur de ce commentaire.",
       });
       return;
     }
@@ -113,7 +113,7 @@ export const deleteComment = TryCatch(
     await sql`DELETE FROM comments WHERE id = ${commentid}`;
 
     res.json({
-      message: "Comment Deleted",
+      message: "Commentaire supprimmer",
     });
   }
 );
@@ -124,7 +124,7 @@ export const saveBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
 
   if (!blogid || !userid) {
     res.status(400).json({
-      message: "Missing blog id or userid",
+      message: " id ou userid de blog manquant",
     });
     return;
   }
@@ -136,14 +136,14 @@ export const saveBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
     await sql`INSERT INTO savedblogs (blogid, userid) VALUES (${blogid}, ${userid})`;
 
     res.json({
-      message: "Blog Saved",
+      message: "Blog Enregistrer",
     });
     return;
   } else {
     await sql`DELETE FROM savedblogs WHERE userid = ${userid} AND blogid = ${blogid}`;
 
     res.json({
-      message: "Blog Unsaved",
+      message: "Blog non Enregistrer",
     });
     return;
   }
