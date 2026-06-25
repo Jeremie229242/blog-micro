@@ -79,7 +79,7 @@ const BlogPage = () => {
       setComment("");
       fetchComment();
     } catch (error) {
-      toast.error("Problem while adding comment");
+      toast.error("Problème lors de l'ajout d'un commentaire");
     } finally {
       setLoading(false);
     }
@@ -99,7 +99,7 @@ const BlogPage = () => {
   }
 
   const deleteComment = async (id: string) => {
-    if (confirm("Are you sure you want to delete this comment")) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce commentaire ?")) {
       try {
         setLoading(true);
         const token = Cookies.get("token");
@@ -114,7 +114,7 @@ const BlogPage = () => {
         toast.success(data.message);
         fetchComment();
       } catch (error) {
-        toast.error("Problem while deleting comment");
+        toast.error("Problème lors de la suppression du commentaire");
         console.log(error);
       } finally {
         setLoading(false);
@@ -123,7 +123,7 @@ const BlogPage = () => {
   };
 
   async function deletBlog() {
-    if (confirm("Are you sure you want to delete this blog")) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce blog ?")) {
       try {
         setLoading(true);
         const token = Cookies.get("token");
@@ -141,7 +141,7 @@ const BlogPage = () => {
           fetchBlogs();
         }, 4000);
       } catch (error) {
-        toast.error("Problem while deleting comment");
+        toast.error("Problème lors de la suppression d'un commentaire");
         console.log(error);
       } finally {
         setLoading(false);
@@ -256,19 +256,19 @@ const BlogPage = () => {
       {isAuth && (
         <Card>
           <CardHeader>
-            <h3 className="text-xl font-semibold">Leave a comment</h3>
+            <h3 className="text-xl font-semibold">Laissez un commentaire</h3>
           </CardHeader>
           <CardContent>
-            <Label htmlFor="comment">Your Comment</Label>
+            <Label htmlFor="comment">Votre commentaire</Label>
             <Input
               id="comment"
-              placeholder="Type your comment here"
+              placeholder="Saisissez votre commentaire ici"
               className="my-2"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
             <Button onClick={addComment} disabled={loading}>
-              {loading ? "Adding comment..." : "Post Comment"}
+              {loading ? "Ajout commentaire..." : "Poster le Commentaire"}
             </Button>
           </CardContent>
         </Card>
@@ -276,7 +276,7 @@ const BlogPage = () => {
 
       <Card>
         <CardHeader>
-          <h3 className="text-lg font-medium">All Comments</h3>
+          <h3 className="text-lg font-medium">Les Commentaires</h3>
         </CardHeader>
         <CardContent>
           {comments && comments.length > 0 ? (
@@ -308,7 +308,7 @@ const BlogPage = () => {
               );
             })
           ) : (
-            <p>No Comments Yet</p>
+            <p>Pas encore de commentaire pour ce sujet</p>
           )}
         </CardContent>
       </Card>

@@ -54,8 +54,8 @@ const EditBlogPage = () => {
 
   const config = useMemo(
     () => ({
-      readonly: false, // all options from https://xdsoft.net/jodit/docs/,
-      placeholder: "Start typings...",
+      readonly: false, // Tous options https://xdsoft.net/jodit/docs/,
+      placeholder: "Commencer a écrire...",
     }),
     []
   );
@@ -127,7 +127,7 @@ const EditBlogPage = () => {
     <div className="max-w-4xl mx-auto p-6">
       <Card>
         <CardHeader>
-          <h2 className="text-2xl font-bold">Add New Blog</h2>
+          <h2 className="text-2xl font-bold">Ajout nouveau Sujet</h2>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -137,7 +137,7 @@ const EditBlogPage = () => {
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
-                placeholder="Enter Blog title"
+                placeholder="Saisissez le titre du blog"
                 required
               />
             </div>
@@ -148,7 +148,7 @@ const EditBlogPage = () => {
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
-                placeholder="Enter Blog descripiton"
+                placeholder="Saisissez la description du blog"
                 required
               />
             </div>
@@ -161,7 +161,7 @@ const EditBlogPage = () => {
             >
               <SelectTrigger>
                 <SelectValue
-                  placeholder={formData.category || "Select category"}
+                  placeholder={formData.category || "Selectionner categorie"}
                 />
               </SelectTrigger>
               <SelectContent>
@@ -186,11 +186,11 @@ const EditBlogPage = () => {
             </div>
 
             <div>
-              <Label>Blog Content</Label>
+              <Label>Text du Blog </Label>
               <div className="flex justify-between items-center mb-2">
                 <p className="text-sm text-muted-foreground">
-                  Paste you blog or type here. You can use rich text formatting.
-                  Please add image after improving your grammer
+                Collez votre blog ou saisissez votre texte ici. Vous pouvez utiliser la mise en forme enrichie.
+                Veuillez ajouter une image après avoir corrigé votre orthographe et votre grammaire.
                 </p>
               </div>
               <JoditEditor
@@ -206,7 +206,7 @@ const EditBlogPage = () => {
             </div>
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Submitting" : "Submit"}
+              {loading ? "Soummission" : "Soumettre"}
             </Button>
           </form>
         </CardContent>
