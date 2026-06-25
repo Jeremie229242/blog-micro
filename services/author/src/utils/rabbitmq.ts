@@ -14,15 +14,15 @@ export const connectRabbitMQ = async () => {
 
     channel = await connection.createChannel();
 
-    console.log("✅ Connected to Rabbitmq");
+    console.log("✅  Rabbitmq connecter");
   } catch (error) {
-    console.error("❌ Failed to connect to Rabbitmq", error);
+    console.error("❌ Erreur de connection a Rabbitmq", error);
   }
 };
 
 export const publishToQueue = async (queueName: string, message: any) => {
   if (!channel) {
-    console.error("Rabbitmq channel is not intialized");
+    console.error(" Le canal Rabbitmq n'est pas initialisé.");
     return;
   }
 
@@ -40,10 +40,10 @@ export const invalidateChacheJob = async (cacheKeys: string[]) => {
       keys: cacheKeys,
     };
 
-    await publishToQueue("cache-invalidation", message);
+    await publishToQueue("invalidation du cache", message);
 
-    console.log("✅ Cache invalidation job published to Rabbitmq");
+    console.log("✅ Tâche d'invalidation du cache publiée sur Rabbitmq");
   } catch (error) {
-    console.error("❌ Failed to Publish cache on Rabbitmq", error);
+    console.error("❌ Échec de la publication du cache sur Rabbitmq", error);
   }
 };

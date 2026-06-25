@@ -7,6 +7,8 @@ import cloudinary from "cloudinary";
 import { GoogleGenAI } from "@google/genai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+
+
 export const createBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
   const { title, description, blogcontent, category } = req.body;
 
@@ -14,7 +16,7 @@ export const createBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
 
   if (!file) {
     res.status(400).json({
-      message: "No file to upload",
+      message: "Aucun fichier à télécharger",
     });
     return;
   }
@@ -23,7 +25,7 @@ export const createBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
 
   if (!fileBuffer || !fileBuffer.content) {
     res.status(400).json({
-      message: "Failed to generate buffer",
+      message: "Erreur de generation buffer",
     });
     return;
   }
@@ -38,7 +40,7 @@ export const createBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
   await invalidateChacheJob(["blogs:*"]);
 
   res.json({
-    message: "Blog Created",
+    message: "Blog Créer",
     blog: result[0],
   });
 });
@@ -53,14 +55,14 @@ export const updateBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
 
   if (!blog.length) {
     res.status(404).json({
-      message: "No blog with this id",
+      message: "Pas de blog avec cet id",
     });
     return;
   }
 
   if (blog[0].author !== req.user?._id) {
     res.status(401).json({
-      message: "You are not author of this blog",
+      message: "Vous n'êtes pas l'auteur de ce blog",
     });
     return;
   }
@@ -72,7 +74,7 @@ export const updateBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
 
     if (!fileBuffer || !fileBuffer.content) {
       res.status(400).json({
-        message: "Failed to generate buffer",
+        message: "Erreur de generation buffer",
       });
       return;
     }
@@ -84,20 +86,7 @@ export const updateBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
     imageUrl = cloud.secure_url;
   }
 
-  //Previous code
-
-  /* const updatedBlog = await sql`UPDATE blogs SET
-    title = ${title || blog[0].title},
-    description = ${title || blog[0].description},
-    image= ${imageUrl},
-    blogcontent = ${title || blog[0].blogcontent},
-    category = ${title || blog[0].category}
-
-    WHERE id = ${id}
-    RETURNING *
-    `; */
-
-  //updated code
+ 
 
   const updatedBlog = await sql`UPDATE blogs SET
     title = ${title || blog[0].title},
@@ -113,7 +102,7 @@ export const updateBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
   await invalidateChacheJob(["blogs:*", `blog:${id}`]);
 
   res.json({
-    message: "Blog Updated",
+    message: "Blog mise a jour",
     blog: updatedBlog[0],
   });
 });
@@ -123,14 +112,14 @@ export const deleteBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
 
   if (!blog.length) {
     res.status(404).json({
-      message: "No blog with this id",
+      message: "Pas de blog avec cet id",
     });
     return;
   }
 
   if (blog[0].author !== req.user?._id) {
     res.status(401).json({
-      message: "You are not author of this blog",
+      message: "Vous n'êtes pas l'auteur de ce blog",
     });
     return;
   }
@@ -167,7 +156,7 @@ export const aiTitleResponse = TryCatch(async (req, res) => {
 
     if (!rawtext) {
       res.status(400).json({
-        message: "Something went wrong",
+        message: "Quelque chose s'est mal passé",
       });
       return;
     }
@@ -189,7 +178,7 @@ export const aiDescriptionResponse = TryCatch(async (req, res) => {
 
   const prompt =
     description === ""
-      ? `Generate only one short blog description based on this 
+      ? `In french Generate only one short blog description based on this 
 title: "${title}". Your response must be only one sentence, strictly under 30 words, with no options, no greetings, and 
 no extra text. Do not explain. Do not say 'here is'. Just return the description only.`
       : `Fix the grammar in the 
@@ -211,7 +200,7 @@ following blog description and return only the corrected sentence. Do not add an
 
     if (!rawtext) {
       res.status(400).json({
-        message: "Something went wrong",
+        message: "Quelque chose s'est mal passé",
       });
       return;
     }
@@ -237,7 +226,7 @@ image tags, line breaks, and structural tags exactly as they are. Return the ful
   const { blog } = req.body;
   if (!blog) {
     res.status(400).json({
-      message: "Please provide blog",
+      message: "Veuillez fournir un blog",
     });
     return;
   }

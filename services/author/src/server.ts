@@ -57,7 +57,7 @@ async function initDB() {
           );
           `;
   
-      console.log("database initialized successfully");
+      console.log("Base de données initialisée avec succès.");
     } catch (error) {
       console.log("Error initDb", error);
     }
@@ -67,6 +67,6 @@ async function initDB() {
 
 initDB().then(() => {
   app.listen(port, () => {
-    console.log(`Server en cours d'execution http://localhost:${port}`);
+    console.log(`Server en cours d'executionsur le port http://localhost:${port}`);
   });
 });
