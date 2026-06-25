@@ -18,20 +18,20 @@ const Blogs = () => {
       ) : (
         <div className="contianer mx-auto px-4">
           <div className="flex justify-between items-center my-5">
-            <h1 className="text-3xl font-bold">Latest Blogs</h1>
+            <h1 className="text-3xl font-bold">Derniers Blogs</h1>
             <Button
               onClick={toggleSidebar}
               className="flex items-center gap-2 px-4 bg-primary text-white"
             >
               <Filter size={18} />
-              <span>Filter Blogs</span>
+              <span>Filtrer Blogs</span>
             </Button>
           </div>
           {blogLoading ? (
             <Loading />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {blogs?.length === 0 && <p>No Blogs Yet</p>}
+              {blogs?.length === 0 && <p>Pas encore de Sujet</p>}
               {blogs &&
                 blogs.map((e, i) => {
                   return (

@@ -39,7 +39,7 @@ const LoginPage = () => {
       setUser(result.data.user);
     } catch (error) {
       console.log("error", error);
-      toast.error("Problem while login you");
+      toast.error("Problème lors de la connexion");
       setLoading(false);
     }
   };
@@ -57,12 +57,12 @@ const LoginPage = () => {
         <div className="w-[350px] m-auto mt-[200px]">
           <Card className="w-[350px]">
             <CardHeader>
-              <CardTitle>Login to The Reading Retreat</CardTitle>
-              <CardDescription>Your go to blog app</CardDescription>
+              <CardTitle>Se connecter à la retraite de lecture</CardTitle>
+              <CardDescription>Votre application de blog incontournable</CardDescription>
             </CardHeader>
             <CardContent>
               <Button onClick={googleLogin}>
-                Login with google{" "}
+              Se connecter avec Google{" "}
                 <img
                   src={"/google.png"}
                   className="w-6 h-6"

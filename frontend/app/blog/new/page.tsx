@@ -88,7 +88,7 @@ const AddBlog = () => {
         fetchBlogs();
       }, 4000);
     } catch (error) {
-      toast.error("Error while adding blog");
+      toast.error("Erreur lors de l'ajout du blog");
     } finally {
       setLoading(false);
     }
@@ -104,7 +104,7 @@ const AddBlog = () => {
       });
       setFormData({ ...formData, title: data });
     } catch (error) {
-      toast.error("Problem while fetching from ai");
+      toast.error("Problème lors de la récupération depuis ia");
       console.log(error);
     } finally {
       setAiTitle(false);
@@ -125,7 +125,7 @@ const AddBlog = () => {
       );
       setFormData({ ...formData, description: data });
     } catch (error) {
-      toast.error("Problem while fetching from ai");
+      toast.error("Problème lors de la récupération depuis ia");
       console.log(error);
     } finally {
       setAiDescription(false);
@@ -143,7 +143,7 @@ const AddBlog = () => {
       setContent(data.html);
       setFormData({ ...formData, blogcontent: data.html });
     } catch (error: any) {
-      toast.error("Problem while fetching from ai");
+      toast.error("Problème lors de la récupération depuis ia");
       console.log(error);
     } finally {
       setAiBlogLoading(false);
@@ -152,8 +152,8 @@ const AddBlog = () => {
 
   const config = useMemo(
     () => ({
-      readonly: false, // all options from https://xdsoft.net/jodit/docs/,
-      placeholder: "Start typings...",
+      readonly: false, // tous les options pour https://xdsoft.net/jodit/docs/,
+      placeholder: "Commencez à écrire...",
     }),
     []
   );
@@ -161,7 +161,7 @@ const AddBlog = () => {
     <div className="max-w-4xl mx-auto p-6">
       <Card>
         <CardHeader>
-          <h2 className="text-2xl font-bold">Add New Blog</h2>
+          <h2 className="text-2xl font-bold">Ajouter un nouveau sujet</h2>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -190,7 +190,7 @@ const AddBlog = () => {
               )}
             </div>
 
-            <Label>Description</Label>
+            <Label>La Description</Label>
             <div className="flex justify-center items-center gap-2">
               <Input
                 name="description"
@@ -215,7 +215,7 @@ const AddBlog = () => {
               )}
             </div>
 
-            <Label>Category</Label>
+            <Label>La Categorie</Label>
             <Select
               onValueChange={(value: any) =>
                 setFormData({ ...formData, category: value })
@@ -236,7 +236,7 @@ const AddBlog = () => {
             </Select>
 
             <div>
-              <Label>Image Upload</Label>
+              <Label>Importer Image </Label>
               <Input type="file" accept="image/*" onChange={handleFileChange} />
             </div>
 
@@ -244,8 +244,8 @@ const AddBlog = () => {
               <Label>Blog Content</Label>
               <div className="flex justify-between items-center mb-2">
                 <p className="text-sm text-muted-foreground">
-                  Paste you blog or type here. You can use rich text formatting.
-                  Please add image after improving your grammer
+                Collez votre blog ou saisissez votre texte ici. Vous pouvez utiliser la mise en forme enrichie.
+                Veuillez ajouter une image après avoir corrigé votre orthographe et votre grammaire.
                 </p>
                 <Button
                   type="button"
@@ -257,7 +257,7 @@ const AddBlog = () => {
                     size={16}
                     className={aiBlogLoading ? "animate-spin" : ""}
                   />
-                  <span className="ml-2">Fix Grammer</span>
+                  <span className="ml-2">Corriger la grammaire</span>
                 </Button>
               </div>
               <JoditEditor
@@ -273,7 +273,7 @@ const AddBlog = () => {
             </div>
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Submitting" : "Submit"}
+              {loading ? "Soumission" : "Submettre"}
             </Button>
           </form>
         </CardContent>
