@@ -28,7 +28,7 @@ const SideBar = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search Your Desired blog"
+            placeholder="Recherchez votre Sujet Ici"
           />
 
           <SidebarGroupLabel>Categories</SidebarGroupLabel>

@@ -73,7 +73,7 @@ const ProfilePage = () => {
         });
         setUser(data.user);
       } catch (error) {
-        toast.error("Image Update Failed");
+        toast.error("Erreur de mise a jour Image");
         setLoading(false);
       }
     }
@@ -133,7 +133,7 @@ const ProfilePage = () => {
               </Avatar>
 
               <div className="w-full space-y-2 text-center">
-                <label className="font-medium">Name</label>
+                <label className="font-medium">Nom complet</label>
                 <p>{user?.name}</p>
               </div>
 
@@ -177,9 +177,9 @@ const ProfilePage = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-2 mt-6 w-full justify-center">
-                <Button onClick={logoutHandler}>Logout</Button>
+                <Button onClick={logoutHandler}>Deconnexion</Button>
                 <Button onClick={() => router.push("/blog/new")}>
-                  Add Blog
+                  Ajouter Blog
                 </Button>
 
                 <Dialog open={open} onOpenChange={setOpen}>
@@ -188,12 +188,12 @@ const ProfilePage = () => {
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[500px]">
                     <DialogHeader>
-                      <DialogTitle>Edit Profile</DialogTitle>
+                      <DialogTitle>Modification de Profile</DialogTitle>
                     </DialogHeader>
 
                     <div className="space-y-3">
                       <div>
-                        <Label>Name</Label>
+                        <Label>Nom complet</Label>
                         <Input
                           value={formData.name}
                           onChange={(e) =>
@@ -251,7 +251,7 @@ const ProfilePage = () => {
                         onClick={handleFormSubmit}
                         className="w-full mt-4"
                       >
-                        Save Changes
+                        Enregistrer les modifications
                       </Button>
                     </div>
                   </DialogContent>

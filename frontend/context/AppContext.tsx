@@ -18,13 +18,13 @@ export const author_service = "http://localhost:5001";
 export const blog_service = "http://localhost:5002";
 
 export const blogCategories = [
-  "Techonlogy",
-  "Health",
+  "Techonlogie",
+  "Santé",
   "Finance",
-  "Travel",
+  "Voyage",
   "Education",
-  "Entertainment",
-  "Study",
+  "Entrainement",
+  "Etude",
 ];
 
 export interface User {
@@ -149,7 +149,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setUser(null);
     setIsAuth(false);
 
-    toast.success("user Logged Out");
+    toast.success("utilisateur deconnecter");
   }
 
   useEffect(() => {
@@ -191,7 +191,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 export const useAppData = (): AppContextType => {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error("useappdata must be used within AppProvider");
+    throw new Error("La commande useappdata doit être utilisée dans AppProvider.");
   }
   return context;
 };
