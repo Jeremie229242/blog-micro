@@ -16,7 +16,7 @@ export const isAuth = async (
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       res.status(401).json({
-        message: "Please Login - No auth header",
+        message: "Veuillez vous connecter - Pas de auth header",
       });
       return;
     }
@@ -30,7 +30,7 @@ export const isAuth = async (
 
     if (!decodeValue || !decodeValue.user) {
       res.status(401).json({
-        message: "Invalid token",
+        message: "Invalide token",
       });
       return;
     }
@@ -40,7 +40,7 @@ export const isAuth = async (
   } catch (error) {
     console.log("JWT verification error: ", error);
     res.status(401).json({
-      message: "Please Login - Jwt error",
+      message: "Veuillez vous connecter - Jwt error",
     });
   }
 };

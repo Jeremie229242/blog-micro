@@ -12,7 +12,7 @@ export const loginUser = TryCatch(async (req, res) => {
 
   if (!code) {
     res.status(400).json({
-      message: "Authorization code is required",
+      message: "Un code d'autorisation est requis.",
     });
     return;
   }
@@ -59,7 +59,7 @@ export const getUserProfile = TryCatch(async (req, res) => {
 
   if (!user) {
     res.status(404).json({
-      message: "No user with this id",
+      message: "Aucun utilisateur avec cet identifiant",
     });
     return;
   }
@@ -87,7 +87,7 @@ export const updateUser = TryCatch(async (req: AuthenticatedRequest, res) => {
   });
 
   res.json({
-    message: "User Updated",
+    message: "Mise à jour de l'utilisateur",
     token,
     user,
   });
@@ -99,7 +99,7 @@ export const updateProfilePic = TryCatch(
 
     if (!file) {
       res.status(400).json({
-        message: "No file to upload",
+        message: "Aucun fichier à télécharger",
       });
       return;
     }
@@ -108,7 +108,7 @@ export const updateProfilePic = TryCatch(
 
     if (!fileBuffer || !fileBuffer.content) {
       res.status(400).json({
-        message: "Failed to generate buffer",
+        message: "Échec de la génération de buffer",
       });
       return;
     }
@@ -129,7 +129,7 @@ export const updateProfilePic = TryCatch(
     });
 
     res.json({
-      message: "User Profile pic updated",
+      message: "Photo de profil utilisateur mise à jour",
       token,
       user,
     });
