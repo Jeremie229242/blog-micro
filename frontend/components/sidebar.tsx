@@ -19,11 +19,11 @@ const SideBar = () => {
   return (
     <Sidebar>
       <SidebarHeader className="bg-white text-2xl font-bold mt-5">
-        The Reading Retreat
+      La retraite de lecture
       </SidebarHeader>
       <SidebarContent className="bg-white">
         <SidebarGroup>
-          <SidebarGroupLabel>Search</SidebarGroupLabel>
+          <SidebarGroupLabel>Recherche</SidebarGroupLabel>
           <Input
             type="text"
             value={searchQuery}

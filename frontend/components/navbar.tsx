@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="bg-white shadow-md p-4 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Link href={"/blogs"} className="text-xl font-bold text-gray-900">
-          The Reading Retreat
+        La retraite de lecture
         </Link>
 
         <div className="md:hidden">
@@ -26,13 +26,13 @@ const Navbar = () => {
         <ul className="hidden md:flex justify-center items-center space-x-6 text-gray-700">
           <li>
             <Link href={"/blogs"} className="hover:text-blue-500">
-              Home
+              Acceuil
             </Link>
           </li>
           {isAuth && (
             <li>
               <Link href={"/blog/saved"} className="hover:text-blue-500">
-                Saved Blogs
+                Favoris
               </Link>
             </li>
           )}
